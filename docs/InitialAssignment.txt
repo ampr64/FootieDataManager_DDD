@@ -1,0 +1,3 @@
+Create a .NET CORE WebAPI. Add EntityFramework 3.1 and Swagger packages.
+The database model must include one-to-one, one-to-many and many-to-many relationships.
+The only requirement for the application is for it to have 10 endpoints that add value. E.g: best selling products, least frequent flights, non-delivered shipments, average age of all players, etc.
