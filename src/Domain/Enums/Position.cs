@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums
 {
-    public enum PlayerPositionEnum
+    public enum Position
     {
         Goalkeeper = 1,
         Defender = 2,

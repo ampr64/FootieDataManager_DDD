@@ -1,11 +1,15 @@
 ﻿using Domain.Common;
 using System.Collections.Generic;
 
-namespace Domain.Entities
+namespace Domain.Entities.LeagueAggregate
 {
-    public class League : Entity<int>
+    public class League : Entity<int>, IAggregateRoot
     {
         public string Name { get; private set; }
+
+        public int Division { get; private set; }
+
+        public int NumberOfTeams { get; private set; }
 
         public int CountryId { get; private set; }
 

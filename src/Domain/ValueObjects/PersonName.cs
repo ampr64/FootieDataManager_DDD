@@ -1,5 +1,6 @@
 ﻿using Domain.Common;
 using Domain.Exceptions;
+using System.Collections.Generic;
 
 namespace Domain.ValueObjects
 {
@@ -24,5 +25,13 @@ namespace Domain.ValueObjects
 
             return new PersonName(first, last); 
         }
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return First;
+            yield return Last;
+        }
+
+        public override string ToString() => FullName;
     }
 }
