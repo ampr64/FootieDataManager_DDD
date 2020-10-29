@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Entities.ClubAggregate;
 using Domain.Exceptions;
 using System;
 

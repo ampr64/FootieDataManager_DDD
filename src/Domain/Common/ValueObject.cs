@@ -28,7 +28,8 @@ namespace Domain.Common
             if (!obj.IsSameTypeAs(this))
                 return false;
 
-            return GetEqualityComponents().SequenceEqual(((ValueObject)obj).GetEqualityComponents());
+            return GetEqualityComponents()
+                .SequenceEqual(((ValueObject)obj).GetEqualityComponents());
         }
 
         protected abstract IEnumerable<object> GetEqualityComponents();

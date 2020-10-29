@@ -1,4 +1,6 @@
 ﻿using Domain.Common;
+using Domain.Common.ValueObjects;
+using Domain.Entities.ClubAggregate;
 using System;
 
 namespace Domain.Entities
@@ -9,8 +11,8 @@ namespace Domain.Entities
 
         public Club Club { get; private set; }
 
-        public Manager(string firstName, string lastName, int countryId, DateTime birthDate, int clubId)
-            : base(firstName, lastName, countryId, birthDate)
+        public Manager(PersonName name, int countryId, decimal height, decimal weight, DateTime birthDate, int clubId)
+            : base(name, countryId, height, weight, birthDate)
         {
             ClubId = clubId;
         }

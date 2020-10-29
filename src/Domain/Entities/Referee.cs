@@ -1,4 +1,6 @@
 ﻿using Domain.Common;
+using Domain.Common.ValueObjects;
+using Domain.Entities.LeagueAggregate;
 using System;
 
 namespace Domain.Entities
@@ -9,8 +11,8 @@ namespace Domain.Entities
 
         public League League { get; private set; }
 
-        public Referee(string firstName, string lastName, int countryId, DateTime birthDate, int leagueId)
-            : base(firstName, lastName, countryId, birthDate)
+        public Referee(PersonName name, int countryId, decimal height, decimal weight,
+            DateTime birthDate, int leagueId) : base(name, countryId, height, weight, birthDate)
         {
             LeagueId = leagueId;
         }

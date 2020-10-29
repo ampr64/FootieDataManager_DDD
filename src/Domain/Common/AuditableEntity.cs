@@ -3,6 +3,7 @@
 namespace Domain.Common
 {
     public abstract class AuditableEntity<TId> : Entity<TId>
+        where TId : IEquatable<TId>
     {
         public DateTime CreatedOn { get; set; }
 

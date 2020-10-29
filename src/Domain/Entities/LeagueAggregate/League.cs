@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Entities.ClubAggregate;
 using System.Collections.Generic;
 
 namespace Domain.Entities.LeagueAggregate

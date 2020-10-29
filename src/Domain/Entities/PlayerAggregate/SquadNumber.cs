@@ -1,28 +1,27 @@
 ﻿using Domain.Common;
-using Domain.Exceptions;
+using Domain.Rules;
 using System.Collections.Generic;
 
 namespace Domain.Entities.PlayerAggregate
 {
     public class SquadNumber : ValueObject
     {
-        public int Value { get; private set; }
+        public int Number { get; private set; }
 
-        private SquadNumber(int number) => Value = number;
+        private SquadNumber(int number) => Number = number;
 
         public SquadNumber Of(int number)
         {
-            if (number < 0 || number > 99)
-                throw new SquadNumberInvalidException(number);
+            new SquadNumberMustBeWithinRangeRule(number).Enforce();
 
             return new SquadNumber(number);
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            yield return Value;
+            yield return Number;
         }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Number.ToString();
     }
 }
