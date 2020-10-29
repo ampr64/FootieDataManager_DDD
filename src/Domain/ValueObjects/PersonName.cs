@@ -1,8 +1,7 @@
-﻿using Domain.Common;
-using Domain.Exceptions;
+﻿using Domain.Rules;
 using System.Collections.Generic;
 
-namespace Domain.ValueObjects
+namespace Domain.Common.ValueObjects
 {
     public class PersonName : ValueObject
     {
@@ -20,8 +19,8 @@ namespace Domain.ValueObjects
 
         public static PersonName Of(string first, string last)
         {
-            if (string.IsNullOrWhiteSpace(first) || string.IsNullOrWhiteSpace(last))
-                throw new PersonNameInvalidException();
+            new PersonNameMustHaveFirstAndLastRule(first, last);
+            new PersonNameMustContainAllowedCharactersRule(first, last);
 
             return new PersonName(first, last); 
         }

@@ -2,7 +2,7 @@
 using Domain.Exceptions;
 using System.Collections.Generic;
 
-namespace Domain.ValueObjects
+namespace Domain.Entities.PlayerAggregate
 {
     public class SquadNumber : ValueObject
     {
@@ -12,7 +12,7 @@ namespace Domain.ValueObjects
 
         public SquadNumber Of(int number)
         {
-            if (number < 1 || number > 99)
+            if (number < 0 || number > 99)
                 throw new SquadNumberInvalidException(number);
 
             return new SquadNumber(number);

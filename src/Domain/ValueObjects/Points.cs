@@ -1,7 +1,7 @@
 ﻿using Domain.Common;
 using System.Collections.Generic;
 
-namespace Domain.ValueObjects
+namespace Domain.Common.ValueObjects
 {
     public class Points : ValueObject
     {

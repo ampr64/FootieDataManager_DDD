@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.ValueObjects;
+using Domain.Common.ValueObjects;
 using System;
 
 namespace Domain.Common
@@ -12,24 +12,32 @@ namespace Domain.Common
 
         public Country Country { get; protected set; }
 
+        public decimal Height { get; private set; }
+
+        public decimal Weight { get; private set; }
+
         public DateTime BirthDate { get; protected set; }
 
         public string PictureUrl { get; private set; }
 
-        public int Age => CalculateAge();
+        public int Age => GetAge();
 
-        protected Person(string firstName, string lastName, int countryId, DateTime birthDate)
+        protected Person() { }
+
+        protected Person(PersonName name, int countryId, decimal height, decimal weight, DateTime birthDate)
         {
-            Name = PersonName.Of(firstName, lastName);
+            Name = name;
             CountryId = countryId;
+            Height = height;
+            Weight = weight;
             BirthDate = birthDate;
         }
 
-        private int CalculateAge()
+        private int GetAge()
         {
             int age = DateTime.Today.Year - BirthDate.Year;
             return BirthDate.Date > DateTime.UtcNow.Date
-                ? age -= 1
+                ? age--
                 : age;
         }
     }

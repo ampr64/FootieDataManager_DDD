@@ -1,16 +1,16 @@
 ﻿using Domain.Common;
-using Domain.Entities;
+using Domain.Entities.PlayerAggregate;
+using Domain.Common.ValueObjects;
 using System.Collections.Generic;
+using Domain.Entities.ClubAggregate;
 
-namespace Domain.ValueObjects
+namespace Domain.Entities.MatchAggregate
 {
     public class LineupPlayer : ValueObject
     {
-        public string Name { get; private set; }
-
         public long PlayerId { get; private set; }
 
-        public Player Player { get; private set; }
+        public PersonName Name { get; private set; }
 
         public int ClubId { get; private set; }
 
@@ -20,9 +20,10 @@ namespace Domain.ValueObjects
 
         private LineupPlayer() { }
 
-        public LineupPlayer(long playerId, int clubId, SquadNumber squadNumber)
+        public LineupPlayer(long playerId, PersonName name, int clubId, SquadNumber squadNumber)
         {
             PlayerId = playerId;
+            Name = name;
             ClubId = clubId;
             SquadNumber = squadNumber;
         }
@@ -31,8 +32,9 @@ namespace Domain.ValueObjects
         {
             yield return PlayerId;
             yield return ClubId;
+            yield return SquadNumber;
         }
 
-        public override string ToString() => $"{Player.Name} ({SquadNumber}) - {Club.Name}";
+        public override string ToString() => $"{Name} ({SquadNumber}) - {Club.Name}";
     }
 }

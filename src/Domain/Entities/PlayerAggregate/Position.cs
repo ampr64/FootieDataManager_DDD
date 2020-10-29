@@ -1,6 +1,6 @@
 ﻿using Domain.Common;
 
-namespace Domain.Enumerations
+namespace Domain.Entities.PlayerAggregate
 {
     public class Position : Enumeration<Position>
     {

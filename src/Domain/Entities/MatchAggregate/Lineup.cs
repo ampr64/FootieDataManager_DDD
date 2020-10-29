@@ -1,14 +1,19 @@
 ﻿using Domain.Common;
 using Domain.Constants;
+using Domain.Entities.ClubAggregate;
 using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain.ValueObjects
+namespace Domain.Entities.MatchAggregate
 {
     public class Lineup : ValueObject
     {
+        public int ClubId { get; private set; }
+
+        public Club Club { get; private set; }
+
         public LineupPlayer[] Starters { get; private set; }
 
         public LineupPlayer[] Bench { get; private set; }
@@ -45,10 +50,10 @@ namespace Domain.ValueObjects
         {
             yield return Starters;
             yield return Bench;
-            yield return CaptainId;
         }
 
-        private static void Check<TException>(IList<LineupPlayer> items, string paramName, bool condition)
+        private static void Check<TException>(
+            IList<LineupPlayer> items, string paramName, bool condition)
             where TException : Exception
         {
             if (items is null)

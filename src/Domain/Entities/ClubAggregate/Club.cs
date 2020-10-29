@@ -1,8 +1,9 @@
 ﻿using Domain.Common;
 using Domain.Entities.LeagueAggregate;
+using Domain.Entities.PlayerAggregate;
 using System.Collections.Generic;
 
-namespace Domain.Entities
+namespace Domain.Entities.ClubAggregate
 {
     public class Club : AuditableEntity<int>, IAggregateRoot
     {
@@ -12,9 +13,7 @@ namespace Domain.Entities
 
         public League League { get; private set; }
 
-        public long? ChairmanId { get; private set; }
-
-        public Chairman Chairman { get; private set; }
+        public string Owner { get; private set; }
 
         public long? ManagerId { get; private set; }
 

@@ -1,15 +1,16 @@
 ﻿using Domain.Common;
-using Domain.Entities.LeagueAggregate;
+using Domain.Common.ValueObjects;
+using Domain.Entities.ClubAggregate;
 using System;
 using System.Collections.Generic;
 
-namespace Domain.Entities.LeagueAggregate
+namespace Domain.Entities.MatchAggregate
 {
-    public class Match : Entity<long>
+    public class Match : Entity<long>, IAggregateRoot
     {
         public int LeagueId { get; private set; }
 
-        public League League { get; private set; }
+        public long SeasonId { get; private set; }
 
         public int HomeId { get; private set; }
 
@@ -19,9 +20,9 @@ namespace Domain.Entities.LeagueAggregate
 
         public Club Away { get; private set; }
 
-        public IList<Player> HomeLineup { get; private set; }
+        public Lineup HomeLineup { get; private set; }
 
-        public IList<Player> AwayLineup { get; private set; }
+        public Lineup AwayLineup { get; private set; }
 
         public IList<Goal> HomeGoals { get; private set; }
 

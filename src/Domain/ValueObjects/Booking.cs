@@ -1,9 +1,12 @@
 ﻿using Domain.Common;
+using Domain.Entities.ClubAggregate;
 using Domain.Entities.LeagueAggregate;
+using Domain.Entities.MatchAggregate;
+using Domain.Entities.PlayerAggregate;
 using Domain.Enums;
 using System.Collections.Generic;
 
-namespace Domain.Entities.ValueObjects
+namespace Domain.Common.ValueObjects
 {
     public class Booking : ValueObject
     {

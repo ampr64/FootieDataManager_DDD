@@ -1,9 +1,9 @@
-﻿using Domain.Exceptions;
-using System;
+﻿using Domain.Rules;
+using System.Collections.Generic;
 
-namespace Domain.ValueObjects
+namespace Domain.Common.ValueObjects
 {
-    public class Money
+    public class Money : ValueObject
     {
         public decimal Value { get; private set; }
 
@@ -17,18 +17,19 @@ namespace Domain.ValueObjects
 
         public static Money Of(decimal value, string currency)
         {
-            try
-            {
-                _ = Enumerations.Currency.FromName(currency);
-            }
-            catch (InvalidOperationException)
-            {
-                throw new MoneyInvalidCurrencyFormatException(currency);
-            }
+            new MoneyMustHaveCurrencyRule(currency).Enforce();
+            new MoneyCurrencyMustHaveValidFormatRule(currency).Enforce();
+            new MoneyCurrencyMustBeSupportedRule(currency).Enforce();
 
             return new Money(value, currency);
         }
 
         public override string ToString() => $"{Currency} {Value}";
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Currency;
+            yield return Value;
+        }
     }
 }

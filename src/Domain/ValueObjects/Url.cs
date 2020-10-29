@@ -1,9 +1,7 @@
-﻿using Domain.Common;
-using Domain.Exceptions;
-using System;
+﻿using Domain.Rules;
 using System.Collections.Generic;
 
-namespace Domain.ValueObjects
+namespace Domain.Common.ValueObjects
 {
     public class Url : ValueObject
     {
@@ -13,8 +11,7 @@ namespace Domain.ValueObjects
 
         public static Url Of(string url)
         {
-            if (IsValidUrl(url))
-                throw new UrlInvalidException(url);
+            new UrlMustBeHttpOrHttpsRule(url);
 
             return new Url(url);
         }
@@ -25,14 +22,5 @@ namespace Domain.ValueObjects
         }
 
         public override string ToString() => Value.ToString();
-
-        private static bool IsValidUrl(string url)
-        {
-            if (Uri.TryCreate(url, UriKind.Absolute, out Uri validatedUri))
-                return validatedUri.Scheme == Uri.UriSchemeHttp
-                    || validatedUri.Scheme == Uri.UriSchemeHttps;
-
-            return false;
-        }
     }
 }
